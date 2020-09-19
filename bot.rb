@@ -6,3 +6,8 @@ client = Twitter::REST::Client.new do |config|
   config.access_token = ENV['ACCESS_TOKEN']
   config.access_token_secret = ENV['ACCESS_TOKEN_SECRET']
 end
+
+def tweet(text)
+  client.update(text)
+  puts "Tweeted '#{text}'"
+end
