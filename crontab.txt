@@ -1,1 +1,1 @@
-*/30 * * * * ruby ~/puremoji/bot.rb
+*/30 * * * * (cd ~/puremoji && ruby bot.rb) &> ~/puremoji_log
