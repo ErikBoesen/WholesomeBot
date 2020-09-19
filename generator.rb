@@ -22,22 +22,22 @@ def low_favoring_random( upper_bound)
 end
 
 def generate()
-    fishes = []
-    fish_type_count = rand(Chars::FISH_TYPES.length()) + 1
-    if fish_type_count == Chars::FISH_TYPES.length() then
-        fishes += Chars::FISH_TYPES
+    faces = []
+    face_type_count = rand(Chars::FACES.length()) + 1
+    if face_type_count == Chars::FACES.length() then
+        faces += Chars::FACES
     else
-        while (fishes.length() < fish_type_count)
-            String fish = Chars::FISH_TYPES.sample
-            if !fishes.include? fish
-                fishes << fish
+        while (faces.length() < face_type_count)
+            String face = Chars::FACES.sample
+            if !faces.include? face
+                faces << face
             end
         end
     end
 
     # A rare swimmer should show up about once every 8 tweets.
-    if rand(8) == 0 then
-        fishes << Chars::RARE_SWIMMER_TYPES.sample
+    (rand(3) + 1).times do
+        faces << Chars::RARE_DECORATORS.sample
     end
 
     # There will be about 8 tweets a day. Something should be special about
@@ -49,27 +49,8 @@ def generate()
     rare_bottom_dweller_time = (rand(8) == 0)
 
     max_line_length = 10
-    bottom = []
-    if rare_bottom_dweller_time then
-        bottom << Chars::RARE_BOTTOM_DWELLERS.sample
-    end
-    if exceedingly_rare_bottom_time then
-      bottom << Chars::EXCEEDINGLY_RARE_JUNK.sample
-    end
-    plant_count = mid_favoring_random(max_line_length - bottom.length() - 1)
-    if plant_count < 1 then
-        plant_count = 1
-    end
-    plant_count.times do
-        bottom << Chars::PLANT_TYPES.sample
-    end
-    while bottom.length() < max_line_length do
-        bottom << Chars::IDEOGRAPHIC_SPACE
-    end
-    bottom.shuffle!
-    bottom_line = bottom.join('')
 
-    # For each swimmer line, choose a random number of fish,
+    # For each swimmer line, choose a random number of face,
     # then random small whitespace in front of some.
     swim_line_count = 5
     # 2d array of strings
@@ -80,7 +61,7 @@ def generate()
 
         # Lines should tend to have similar swimmer densities. How crowded in general is
         # this aquarium?
-        max_per_line = rand((max_line_length * 0.6).round()) + 1
+        max_per_line = rand((max_line_length * 0.9).round()) + 1
         swimmer_count = mid_favoring_random(max_per_line)
 
         # At least one swimmer on first line so first lines aren't trimmed.
@@ -89,7 +70,7 @@ def generate()
         end
 
         swimmer_count.times do
-          swim_line << (get_small_personal_space() + fishes.sample)
+          swim_line << (get_small_personal_space() + faces.sample)
         end
         while swim_line.length() < max_line_length do
             swim_line << Chars::IDEOGRAPHIC_SPACE
@@ -100,7 +81,6 @@ def generate()
     end
 
     string = swim_lines.collect { |swim_line| swim_line.join("") }.join("\n")
-    string += "\n" + bottom_line
     return string
 end
 
