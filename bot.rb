@@ -14,8 +14,11 @@ def tweet(text)
     puts "Tweeted:\n#{text}"
 end
 
-
+=begin
 loop do
     tweet(generate())
     sleep(30.minutes)
 end
+=end
+
+tweet(generate())
