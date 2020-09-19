@@ -11,16 +11,6 @@ client = Twitter::REST::Client.new do |config|
     config.access_token_secret = credentials['access_token_secret']
 end
 
-def tweet(text)
-    client.update(text)
-    puts "Tweeted:\n#{text}"
-end
-
-=begin
-loop do
-    tweet(generate())
-    sleep(30.minutes)
-end
-=end
-
-tweet(generate())
+text = generate()
+client.update(text)
+puts "Tweeted:\n#{text}"
