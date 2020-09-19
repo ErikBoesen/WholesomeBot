@@ -94,5 +94,3 @@ def get_small_personal_space()
         Chars::EN_SPACE
     ].sample
 end
-
-puts generate()
