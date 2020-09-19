@@ -1,6 +1,6 @@
 class Chars
   FACES = ["🥰", "😊", "☺️", "🥺"]
-  RARE_DECORATORS = ["✨", "💫", "🌈", "☀️", "💖", "💕", "💓", "💞", "❤️"]
+  RARE_DECORATORS = ["✨", "💫", "🌈", "☀️", "💖", "💕", "💓", "💞", "❤️", "🎈"]
   IDEOGRAPHIC_SPACE = "\u3000"
   EN_SPACE = "\u2002"
   EM_SPACE = "\u2003"
