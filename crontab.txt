@@ -1,1 +1,2 @@
-*/30 * * * * (cd ~/puremoji && ruby bot.rb) &> ~/puremoji_log
+# Note: running on cobra zoo node
+0 */2 * * * (cd ~/puremoji && ruby bot.rb) &> ~/puremoji_log
